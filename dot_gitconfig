@@ -1,6 +1,5 @@
 [user]
     name = Benjamin Fovet
-    email = b.fovet@gmail.com
 [init]
     defaultBranch = main
 [filter "lfs"]
