@@ -1,0 +1,18 @@
+font-family = Liga SFMono Nerd Font
+font-style = Regular
+font-size = 9
+font-thicken = true
+
+#shell-integration = fish
+shell-integration-features = no-cursor
+
+unfocused-split-opacity = 1
+
+gtk-titlebar = false
+gtk-adwaita = false
+gtk-tabs-location = bottom
+gtk-wide-tabs = false
+window-decoration = false
+window-theme = ghostty
+window-padding-x = 6
+window-padding-y = 6
