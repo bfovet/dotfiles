@@ -4,5 +4,5 @@
 
 ### Installing
 
-    bash -c "$(curl -fsLS get.chezmoi.io)" -- init --apply bfovet
+    bash -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply bfovet
 
