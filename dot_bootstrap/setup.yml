@@ -22,6 +22,7 @@
           - nomad
           - zellij
           - difftastic
+          - visual-studio-code-bin
 
     - name: Change shell to fish
       ansible.builtin.user:
@@ -62,6 +63,5 @@
         src: https://github.com/googlefonts/googlesans-code/releases/download/v6.001/GoogleSansCode-v6.001.zip 
         dest: "~{{ remote_regular_user }}/.local/share/fonts/"
         remote_src: true
-        include: "variable/*"
         mode: "0755"
         owner: "{{ remote_regular_user }}" 
