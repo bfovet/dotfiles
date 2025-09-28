@@ -34,16 +34,16 @@
         mode: "0755"
         owner: "{{ remote_regular_user }}"
 
-    - name: Check if Liga SFMono exists
+    - name: Check if SFMono exists
       ansible.builtin.shell: "ls ~{{ remote_regular_user }}/.local/share/fonts/LigaSFMonoNerdFont*"
-      register: liga_sfmono_exists
+      register: sfmono_exists
       ignore_errors: true
       changed_when: false
 
-    - name: Download Liga SFMono
-      when: liga_sfmono_exists is failed
+    - name: Download SFMono
+      when: sfmono_exists is failed
       ansible.builtin.unarchive:
-        src: https://github.com/shaunsingh/LigaSFMonoNerdFontFont-Ligaturized/archive/refs/heads/main.zip
+        src: https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized/archive/refs/heads/main.zip
         dest: "~{{ remote_regular_user }}/.local/share/fonts/"
         remote_src: true
         mode: "0755"
