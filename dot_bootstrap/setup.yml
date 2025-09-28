@@ -21,6 +21,7 @@
           - terraform
           - nomad
           - zellij
+          - difftastic
 
     - name: Change shell to fish
       ansible.builtin.user:
