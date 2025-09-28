@@ -1,0 +1,66 @@
+---
+- name: Machine setup
+  hosts: localhost
+  become: true
+  connection: local
+  gather_facts: true
+
+  tasks:
+    - name: Get my user
+      ansible.builtin.set_fact:
+        remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+
+    - name: Install packages
+      pacman:
+        name:
+          - fish
+          - ghostty
+          - ghostty-shell-integration
+          - ghostty-terminfo
+          - vivaldi
+          - terraform
+          - nomad
+          - zellij
+
+    - name: Change shell to fish
+      ansible.builtin.user:
+        name: "{{ remote_regular_user }}"
+        shell: /usr/bin/fish
+
+    - name: Ensure fonts directory
+      ansible.builtin.file:
+        path: "~{{ remote_regular_user }}/.fonts"
+        state: directory
+        mode: "0755"
+        owner: "{{ remote_regular_user }}"
+
+    - name: Check if Liga SFMono exists
+      ansible.builtin.shell: "ls ~{{ remote_regular_user }}/.local/share/fonts/LigaSFMonoNerdFont*"
+      register: liga_sfmono_exists
+      ignore_errors: true
+      changed_when: false
+
+    - name: Download Liga SFMono
+      when: liga_sfmono_exists is failed
+      ansible.builtin.unarchive:
+        src: https://github.com/shaunsingh/LigaSFMonoNerdFontFont-Ligaturized/archive/refs/heads/main.zip
+        dest: "~{{ remote_regular_user }}/.local/share/fonts/"
+        remote_src: true
+        mode: "0755"
+        owner: "{{ remote_regular_user }}"
+
+    - name: Check if Google Sans Code exists
+      ansible.builtin.shell: "ls ~{{ remote_regular_user }}/.local/share/fonts/GoogleSansCode*"
+      register: google_sans_code_exists
+      ignore_errors: true
+      changed_when: false
+
+    - name: Download Google Sans Code
+      when: google_sans_code_exists is failed
+      ansible.builtin.unarchive:
+        src: https://github.com/googlefonts/googlesans-code/releases/download/v6.001/GoogleSansCode-v6.001.zip 
+        dest: "~{{ remote_regular_user }}/.local/share/fonts/"
+        remote_src: true
+        include: "variable/*"
+        mode: "0755"
+        owner: "{{ remote_regular_user }}" 
