@@ -23,6 +23,8 @@
           - zellij
           - difftastic
           - visual-studio-code-bin
+          - git-lfs
+          - rsync
 
     - name: Change shell to fish
       ansible.builtin.user:
