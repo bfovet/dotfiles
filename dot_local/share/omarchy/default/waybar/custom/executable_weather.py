@@ -103,7 +103,7 @@ def fail(msg="Weather unavailable"):
     """Output error message and exit."""
     print(
         json.dumps(
-            {"text": "N/A", "tooltip": f"<span foreground='{FG_HEADER}'>{msg}</span>"}
+            {"text": " | N/A", "tooltip": f"<span foreground='{FG_HEADER}'>{msg}</span>"}
         )
     )
     sys.exit(0)
@@ -330,7 +330,7 @@ def main():
         fail("Failed to parse current weather")
 
     icon, _ = get_weather_info(weather["code"])
-    text = f" | {icon} <span foreground='{temp_to_color(weather['temp'])}'>{weather['temp']}°C</span>"
+    text = f"| {icon} <span foreground='{temp_to_color(weather['temp'])}'>{weather['temp']}°C</span>"
 
     hourly = data["hourly"]
     daily = data["daily"]
