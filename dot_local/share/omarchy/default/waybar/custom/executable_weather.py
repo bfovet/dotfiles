@@ -330,7 +330,7 @@ def main():
         fail("Failed to parse current weather")
 
     icon, _ = get_weather_info(weather["code"])
-    text = f"| {icon} <span foreground='{temp_to_color(weather['temp'])}'>{weather['temp']}°C</span>"
+    text = f" | {icon} <span foreground='{temp_to_color(weather['temp'])}'>{weather['temp']}°C</span>"
 
     hourly = data["hourly"]
     daily = data["daily"]
