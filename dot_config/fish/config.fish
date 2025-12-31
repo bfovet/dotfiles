@@ -11,6 +11,9 @@ if status is-interactive
     alias ll="eza -l --icons"
     alias cat="bat --paging=never"
 
+    alias d="docker"
+    alias dc="docker compose"
+
     # At this point, specify the Zellij config dir, so we can launch it manually if we want to
     export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
 
