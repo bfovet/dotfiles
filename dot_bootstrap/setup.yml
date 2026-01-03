@@ -29,6 +29,14 @@
           - duf
           - procs
           - httpie
+          - eza
+          - bat
+          - fd
+          - fzf
+          - github-cli
+          - ripgrep
+          - typst
+          - zoxide
 
     - name: Change shell to fish
       ansible.builtin.user:
