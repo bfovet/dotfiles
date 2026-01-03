@@ -78,4 +78,16 @@
         dest: "~{{ remote_regular_user }}/.local/share/fonts/"
         remote_src: true
         mode: "0755"
-        owner: "{{ remote_regular_user }}" 
+        owner: "{{ remote_regular_user }}"
+
+    - name: Download Claude Code installation script
+      ansible.builtin.get_url:
+        url: https://storage.googleapis.com/anthropic-cli/install.sh
+        dest: /tmp/install_claude_code.sh
+        mode: "0755"
+
+    - name: Install Claude Code
+      ansible.builtin.shell: /tmp/install_claude_code.sh
+      become: false
+      become_user : "{{ remote_regular_user }}"
+
