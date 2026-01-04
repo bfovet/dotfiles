@@ -38,6 +38,13 @@
           - typst
           - zoxide
 
+    - name: Install AUR packages
+      ansible.builtin.command:
+        cmd: "yay -S --noconfirm {{ item }}"
+        loop:
+          - i8kutils
+          - lotion
+
     - name: Change shell to fish
       ansible.builtin.user:
         name: "{{ remote_regular_user }}"
